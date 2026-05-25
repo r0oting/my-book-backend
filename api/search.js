@@ -2,12 +2,11 @@ const axios = require('axios');
 
 module.exports = async (req, res) => {
 
-    // CORS
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Content-Type', 'application/json');
 
-    // preflight 처리
     if (req.method === 'OPTIONS') {
         return res.status(200).end();
     }
@@ -23,7 +22,7 @@ module.exports = async (req, res) => {
 
         const response = await axios.get(url);
 
-        return res.status(200).json(response.data);
+        return res.status(200).send(JSON.stringify(response.data));
 
     } catch (error) {
 
