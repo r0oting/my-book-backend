@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
         }
 
         const url =
-            `https://www.aladdin.co.kr/ttb/api/ItemSearch.aspx?ttbKey=${ALADDIN_TTB_KEY}&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=5&start=1&SearchTarget=Book&output=js&Version=20131101`;
+            `https://www.aladdin.co.kr/ttb/api/ItemSearch.aspx?ttbKey=${ALADDIN_TTB_KEY}&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=5&start=1&SearchTarget=Book&output=jsv2&Version=20131101`;
 
         console.log("URL:", url);
 
