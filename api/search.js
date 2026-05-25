@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
     try {
 
         const url =
-            `https://www.aladdin.co.kr/ttb/api/ItemSearch.aspx?TTBKey=${ALADDIN_TTB_KEY}&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=5&start=1&SearchTarget=Book&output=js&Version=20131101`;
+            `https://www.aladdin.co.kr/ttb/api/ItemSearch.aspx?TTBKey=${ALADDIN_TTB_KEY}&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=5&start=1&SearchTarget=Book&output=json&Version=20131101`;
 
         const response = await axios.get(url);
 
