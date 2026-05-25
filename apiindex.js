@@ -32,7 +32,7 @@ app.post('/api/add-to-notion', async (req, res) => {
             parent: { database_id: NOTION_DATABASE_ID },
             icon: { type: "external", external: { url: book.cover } },
             properties: {
-                "책 이름": { title: [{ text: { content: book.title } }] },
+                "도서명": { title: [{ text: { content: book.title } }] },
                 "저자": { rich_text: [{ text: { content: book.author } }] },
                 "출판사": { select: { name: book.publisher } },
                 "ISBN": { rich_text: [{ text: { content: book.isbn13 || book.isbn } }] }
