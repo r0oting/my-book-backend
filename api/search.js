@@ -1,3 +1,8 @@
+console.log("=== SEARCH API START ===");
+console.log("KEY:", process.env.ALADDIN_TTB_KEY);
+console.log("QUERY:", query);
+console.log("METHOD:", req.method);
+
 const axios = require('axios');
 
 module.exports = async (req, res) => {
