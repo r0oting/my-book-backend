@@ -15,7 +15,7 @@ const NOTION_DATABASE_ID = 'your_notion_database_id';
 const notion = new Client({ auth: NOTION_API_KEY });
 
 // 1. 알라딘 책 검색 API
-app.get('/search', async (req, res) => {
+app.get('/api/search', async (req, res) => {
     const { query } = req.query;
     try {
         const url = `https://www.aladdin.co.kr/ttb/api/ItemSearch.aspx?TTBKey=${ALADDIN_TTB_KEY}&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=5&start=1&SearchTarget=Book&output=js&Version=20131101`;
@@ -27,7 +27,7 @@ app.get('/search', async (req, res) => {
 });
 
 // 2. 노션 DB에 추가 API
-app.post('/add-to-notion', async (req, res) => {
+app.post('/api/add-to-notion', async (req, res) => {
     const book = req.body;
     
     try {
