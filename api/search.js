@@ -10,7 +10,7 @@ module.exports = async (req, res) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
         res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-        res.setHeader('Content-Type', 'application/json');
+        res.setHeader('Content-Type', 'application/json; charset=utf-8');
 
         // OPTIONS 처리
         if (req.method === 'OPTIONS') {
@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
         }
 
         const url =
-            `https://www.aladdin.co.kr/ttb/api/ItemSearch.aspx?TTBKey=${ALADDIN_TTB_KEY}&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=5&start=1&SearchTarget=Book&output=json&Version=20131101`;
+            `https://www.aladdin.co.kr/ttb/api/ItemSearch.aspx?TTBKey=${ALADDIN_TTB_KEY}&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=5&start=1&SearchTarget=Book&output=js&Version=20131101`;
 
         console.log("URL:", url);
 
