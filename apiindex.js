@@ -17,7 +17,7 @@ const notion = new Client({ auth: NOTION_API_KEY });
 app.get('/api/search', async (req, res) => {
     const { query } = req.query;
     try {
-        const url = `http://www.aladdin.co.kr/ttb/api/ItemSearch.aspx?TTBKey=${ALADDIN_TTB_KEY}&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=5&start=1&SearchTarget=Book&output=js&Version=20131101`;
+        const url = `https://www.aladdin.co.kr/ttb/api/ItemSearch.aspx?TTBKey=${ALADDIN_TTB_KEY}&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=5&start=1&SearchTarget=Book&output=js&Version=20131101`;
         const response = await axios.get(url);
         res.json(response.data);
     } catch (error) {
