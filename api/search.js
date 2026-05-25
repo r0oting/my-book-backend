@@ -12,30 +12,28 @@ module.exports = async (req, res) => {
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
         res.setHeader('Content-Type', 'application/json');
 
-        // OPTIONS
+        // OPTIONS 처리
         if (req.method === 'OPTIONS') {
             return res.status(200).end();
         }
 
-        // query 안전 처리
+        // query 선언 먼저
         const query = req.query?.query || '';
 
         console.log("QUERY:", query);
 
-        // 환경변수 확인
+        // 환경변수
         const ALADDIN_TTB_KEY = process.env.ALADDIN_TTB_KEY;
 
-        console.log("KEY EXISTS:", !!ALADDIN_TTB_KEY);
+        console.log("KEY:", ALADDIN_TTB_KEY);
 
         if (!ALADDIN_TTB_KEY) {
-
             return res.status(500).json({
                 error: 'ALADDIN_TTB_KEY missing'
             });
         }
 
         if (!query) {
-
             return res.status(400).json({
                 error: 'query missing'
             });
@@ -48,7 +46,7 @@ module.exports = async (req, res) => {
 
         const response = await axios.get(url);
 
-        console.log("ALADDIN RESPONSE OK");
+        console.log("ALADDIN RESPONSE SUCCESS");
 
         return res.status(200).json(response.data);
 
@@ -57,8 +55,7 @@ module.exports = async (req, res) => {
         console.error("SEARCH ERROR:", error);
 
         return res.status(500).json({
-            error: error.message,
-            stack: error.stack
+            error: error.message
         });
     }
 };
