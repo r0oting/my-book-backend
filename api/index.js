@@ -8,9 +8,9 @@ app.use(cors());
 app.use(express.json());
 
 // 환경 변수 설정 필요
-const ALADDIN_TTB_KEY = 'your_aladdin_ttb_key';
-const NOTION_API_KEY = 'your_notion_api_key';
-const NOTION_DATABASE_ID = 'your_notion_database_id';
+const ALADDIN_TTB_KEY = process.env.ALADDIN_TTB_KEY;
+const NOTION_API_KEY = process.env.NOTION_API_KEY;
+const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
 
 const notion = new Client({ auth: NOTION_API_KEY });
 
