@@ -12,16 +12,21 @@ module.exports = async (req, res) => {
         return res.status(200).end();
     }
     const book = req.body;
- 
-    // 오늘 날짜 (YYYY-MM-DD)
-    const today = new Date().toISOString().split('T')[0];
- 
+
+    // 오늘 날짜 (YYYY-MM-DD) - 한국 시간 기준
+    const today = new Date().toLocaleDateString('ko-KR', {
+        timeZone: 'Asia/Seoul',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    }).replace(/\. /g, '-').replace('.', '');
+
     try {
         await notion.pages.create({
             parent: {
                 database_id: process.env.NOTION_DATABASE_ID
             },
-            // ✅ 표지 이미지를 페이지 커버로 설정
+            // ✅ 표지를 페이지 커버로 설정 (기존 표지 files 속성 건드리지 않음)
             cover: book.cover ? {
                 type: 'external',
                 external: { url: book.cover }
@@ -36,13 +41,9 @@ module.exports = async (req, res) => {
                 "ISBN": {
                     rich_text: [{ text: { content: book.isbn13 || '' } }]
                 },
-                // ✅ 오늘 날짜
-                "등록일": {
+                // ✅ 날짜 속성 - 시작일만 오늘로 (종료일 없음)
+                "날짜": {
                     date: { start: today }
-                },
-                // ✅ 표지 URL을 별도 필드에도 저장 (노션 DB에 "표지" URL 속성이 있는 경우)
-                "표지": {
-                    url: book.cover || null
                 }
             }
         });
