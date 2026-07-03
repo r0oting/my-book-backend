@@ -41,6 +41,9 @@ module.exports = async (req, res) => {
                 "ISBN": {
                     rich_text: [{ text: { content: book.isbn13 || '' } }]
                 },
+                "페이지수": {
+                    number: book.pageCount ? parseInt(book.pageCount, 10) : null
+                },
                 // ✅ 날짜 속성 - 시작일만 오늘로 (종료일 없음)
                 "날짜": {
                     date: { start: today }
