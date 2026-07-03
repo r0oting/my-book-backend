@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
             + `&start=1`
             + `&SearchTarget=Book`
             + `&output=js`           // ✅ jsv2 → js 로 변경
-            + `&Version=20131101`;
+            + `&Version=20131101`
             + `&OptResult=subInfo`; // ✅ 페이지수(itemPage) 포함하기 위해 추가
 
         console.log("URL:", url);
